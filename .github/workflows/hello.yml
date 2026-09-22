@@ -1,12 +1,19 @@
-name: Hello Pipeline
+name: AI Validation POC
 
 on:
-  push:
+  push
 
 jobs:
-  hello:
+  validate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello
-        run: echo "Hello from CI/CD"
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Validator
+        run: python validator.py
