@@ -1,1 +1,1 @@
-password ="jef"
+print("hello")
