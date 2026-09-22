@@ -1,3 +1,6 @@
-No hardcoded passwords
-No TODO comments
-No API keys in code
+Critical|password
+Critical|api_key
+Critical|secret
+
+Warning|TODO
+Warning|console.log
