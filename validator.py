@@ -23,7 +23,7 @@ import sys
 # Read rules
 rules = []
 
-with open("rules.txt", "r") as file:
+with open("rules/rules.txt", "r") as file:
     for line in file:
         line = line.strip()
 
