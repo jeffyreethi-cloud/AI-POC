@@ -1,19 +1,15 @@
 name: AI Validation POC
 
 on:
-  push
+  push:
 
 jobs:
-  validate:
+  hello:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Success Step
+        run: echo "Hello from CI/CD"
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Run Validator
-        run: python validator.py
+      - name: Fail Step
+        run: exit 1
