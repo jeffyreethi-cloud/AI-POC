@@ -1,5 +1,5 @@
 name: AI Validation POC
-
+  
 on:
   push:
 
@@ -8,8 +8,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Success Step
-        run: echo "Hello from CI/CD"
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Fail Step
-        run: exit 1
+      - name: Run compliance validator
+        id: validator
+        shell: bash
+        run: |
+          set +e
+          python3 validator.py 2>&1 | tee compliance-report.md
+          validator_status=${PIPESTATUS[0]}
+          exit "$validator_status"
+
+      - name: Upload compliance report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: compliance-report
+          path: compliance-report.md
